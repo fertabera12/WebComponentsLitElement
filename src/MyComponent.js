@@ -5,14 +5,15 @@ export class MyComponent extends LitElement {
   constructor() {
     super();
     this.title = 'Hola Fersi';
+    this.other = 'Web component'
   }
 
 
 
   render() { //
     return html`
-    <h1>Hola todos</h1>
-    <p>Esto es un componente</p>
+    <h1>${this.title}</h1>
+    <p>esto es un ${this.other}</p>
     `;
   }
 }
