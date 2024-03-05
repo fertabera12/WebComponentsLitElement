@@ -15,23 +15,23 @@ export class MyComponent extends LitElement {
 
   render() { //
     return html`
-    <h1>${this.title}</h1>
+      <h1>${this.title}</h1>
 
-    <p>esto es un ${this.other}</p>
+      <p>esto es un ${this.other}</p>
 
-    <ul>
-      ${this.list.map((item) => html`<li>${item}</li>`)}
-    </ul>
+      <ul>
+        ${this.list.map((item) => html`<li>${item}</li>`)}
+      </ul>
 
-    ${this.isTrue
-    ? html `<p>Es cierto </p>`
-    : html `<p>Es falso</p>`
-    }
+      ${this.isTrue
+      ? html `<p>Es cierto </p>`
+      : html `<p>Es falso</p>`
+      }
 
-  ${this.age >= 18
-    ? html `<p>Es mayor </p>`
-    : html `<p>Es menor</p>`
-    }
+      ${this.age >= 18
+      ? html `<p>Es mayor </p>`
+      : html `<p>Es menor</p>`
+      }
     `;
     }
 }
