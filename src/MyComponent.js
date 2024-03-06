@@ -1,5 +1,9 @@
 import { html, css, LitElement } from 'lit';
 
+
+function renderMessage(message = "Valor default") {
+  return html `<p>${message}</p>`;
+}
 export class MyComponent extends LitElement {
 
   constructor() {
@@ -36,6 +40,7 @@ export class MyComponent extends LitElement {
       }
       <slot name = "my-slot"></slot> <!-- Se imprimen aqui los slot con nombre -->
 
+      ${renderMessage()}
     `;
     }
 }
