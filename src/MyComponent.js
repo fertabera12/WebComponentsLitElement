@@ -15,6 +15,8 @@ export class MyComponent extends LitElement {
 
   render() { //
     return html`
+
+      <slot></slot> <!-- Se imprimen aqui arriba los slot sin nombre -->
       <h1>${this.title}</h1>
 
       <p>esto es un ${this.other}</p>
@@ -32,6 +34,8 @@ export class MyComponent extends LitElement {
       ? html `<p>Es mayor </p>`
       : html `<p>Es menor</p>`
       }
+      <slot name = "my-slot"></slot> <!-- Se imprimen aqui los slot con nombre -->
+
     `;
     }
 }

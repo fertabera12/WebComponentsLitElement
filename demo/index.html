@@ -19,8 +19,11 @@
     render(
       html`
         <my-component .title = "${"Esto es un bindeo"}">
-          some light-dom
-        </my-component>
+          
+          <p>Elemento 1</p>
+          <p slot="my-slot">Elemento 2</p> 
+          <p></p>
+        
       `,
       document.querySelector('#demo')
     );
