@@ -1,4 +1,5 @@
 import { html, css, LitElement } from 'lit';
+import { styles } from './styles';
 
 
 function renderMessage(message = "Valor default") {
@@ -9,14 +10,15 @@ const mainColor = css `blue`; //le tenemos que poner css antes para que funcione
 export class MyComponent extends LitElement {
 
   static get styles(){
-    return css `
+    return [styles,
+      css `
       h1{
         color: red;
       }
       p{
         color: ${mainColor}
       }
-    `
+    `]
   }
 
   constructor() {
