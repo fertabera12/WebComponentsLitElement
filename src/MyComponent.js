@@ -4,7 +4,20 @@ import { html, css, LitElement } from 'lit';
 function renderMessage(message = "Valor default") {
   return html `<p>${message}</p>`;
 }
+
+const mainColor = css `blue`; //le tenemos que poner css antes para que funcione
 export class MyComponent extends LitElement {
+
+  static get styles(){
+    return css `
+      h1{
+        color: red;
+      }
+      p{
+        color: ${mainColor}
+      }
+    `
+  }
 
   constructor() {
     super();
@@ -15,12 +28,16 @@ export class MyComponent extends LitElement {
     this.age = 18;
   }
 
+  firstUpdated(){
+    console.log("isTrue",this.isTrue)
+  }
 
 
-  render() { //
+
+  render() { 
     return html`
 
-      <slot></slot> <!-- Se imprimen aqui arriba los slot sin nombre -->
+      
       <h1>${this.title}</h1>
 
       <p>esto es un ${this.other}</p>
@@ -28,6 +45,9 @@ export class MyComponent extends LitElement {
       <ul>
         ${this.list.map((item) => html`<li>${item}</li>`)}
       </ul>
+
+
+      <slot name = "my-titulo"></slot> 
 
       ${this.isTrue
       ? html `<p>Es cierto </p>`
@@ -39,7 +59,7 @@ export class MyComponent extends LitElement {
       : html `<p>Es menor</p>`
       }
       <slot name = "my-slot"></slot> <!-- Se imprimen aqui los slot con nombre -->
-
+      <slot></slot> <!-- Se imprimen aqui arriba los slot sin nombre -->
       ${renderMessage()}
     `;
     }
