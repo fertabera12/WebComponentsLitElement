@@ -12,11 +12,17 @@ export class MyComponent extends LitElement {
   static get styles(){
     return [styles,
       css `
+      :host{
+        display: flex;
+      }
       h1{
         color: red;
       }
       p{
         color: ${mainColor}
+      }
+      ::slotted(a) {
+        text-decoration: none;
       }
     `]
   }
@@ -50,7 +56,7 @@ export class MyComponent extends LitElement {
 
 
       <slot name = "my-titulo"></slot> 
-
+      <slot name = "my-enlace"></slot> 
       ${this.isTrue
       ? html `<p>Es cierto </p>`
       : html `<p>Es falso</p>`
