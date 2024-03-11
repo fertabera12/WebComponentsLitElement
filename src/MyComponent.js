@@ -9,6 +9,7 @@ function renderMessage(message = "Valor default") {
 const mainColor = css `blue`; //le tenemos que poner css antes para que funcione
 export class MyComponent extends LitElement {
 
+  //Los estilos que se definen en el componente no se pueden pisar a menos que esten en el DOM
   static get styles(){
     return [styles,
       css `
@@ -18,8 +19,8 @@ export class MyComponent extends LitElement {
       h1{
         color: red;
       }
-      p{
-        color: ${mainColor}
+      p {
+        color:var(--p-color, orange); 
       }
       ::slotted(a) {
         text-decoration: none;
