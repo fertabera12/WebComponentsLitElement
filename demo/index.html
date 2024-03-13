@@ -3,11 +3,18 @@
 <head>
   <meta charset="utf-8">
   <style>
+    :root{
+      --p-color: green;
+    }
     body {
       background: #fafafa;
     }
+    my-component{
+      display: block;
+    }
   </style>
 </head>
+
 <body>
   <div id="demo"></div>
 
@@ -15,15 +22,23 @@
     import { html, render } from 'lit';
     import '../my-component.js';
 
-    const title = 'Hello owc World!';
+    const titulo = 'Texto ejemplo';
+    const listaFruta = ['manzana', 'pera','uva'];
     render(
       html`
-        <my-component .title = "${"Esto es un bindeo"}">
-          
-          <p>Elemento 1</p>
+        <my-component 
+          .title = "${titulo}" 
+          .isTrue = "${false}" 
+          .list = "${listaFruta}"
+        >
+        <h1> Titulo de Estilos</h1> 
+          <p>Elemento 1</p> 
           <p slot="my-slot">Elemento 2</p> 
-          <p></p>
-        
+          <a slot="my-enlace" href="#">Enlace</a> 
+          <h1 slot="my-titulo">Titulo</h1> 
+          <h1>Texto dentro </h1> 
+        </my-component>
+
       `,
       document.querySelector('#demo')
     );
