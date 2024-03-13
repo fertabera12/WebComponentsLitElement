@@ -63,7 +63,7 @@ export class MyComponent extends LitElement {
   render() { 
     return html`
      
-      <h1 @click=${() => console.log('CLIIIICK')}>${this.title}</h1> //registra un evento 
+      <h1 @click=${this.handleClick}>${this.title}</h1> 
      
 
       <p>Edad: ${this.age}</p>
@@ -98,6 +98,19 @@ export class MyComponent extends LitElement {
       <p>Registra cada caracter un evento de cambio cuando escribes</p>
       <input type="text" @input=${(value)=> console.log('Cambiado',EventTarget)}/> 
     `;
+    }
+
+    handleClick(){
+
+      const event = new CustomEvent ('my-event', {
+        detail: {
+          message: 'Mensaje para Custom Event'
+        },
+        bubble:true,
+        compored: true
+      });
+
+      this.dispatchEvent(event);
     }
 }
 

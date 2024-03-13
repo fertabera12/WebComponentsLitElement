@@ -28,6 +28,7 @@
     render(
       html`
         <my-component 
+        @my-event=${({detail})=>console.log(detail)} 
           age = "20";
           .title = "${titulo}" 
           .isTrue = "${false}" 
