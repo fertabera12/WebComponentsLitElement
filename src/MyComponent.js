@@ -28,16 +28,13 @@ export class MyComponent extends LitElement {
     `]
   }
 
-
-  //Esto define una propiedad llamada title que es de tipo String. La opción reflect: true significa que si cambia el valor de la propiedad en JavaScript, también se reflejará en el atributo HTML correspondiente. attribute: false significa que esta propiedad no se puede configurar desde el HTML.
-  static get properties (){
-    return {
-      title: {type: String, reflect: true, attribute: false},
-      age: {type: number},
+  static get properties(){
+    return{
+      title:{type:String, Reflect:true, attribute: 'my-title'},
+      age: {type: Number}
     }
   }
 
-  //Buena practica inicializar las propiedades en el contructor
 
   constructor() {
     super();
@@ -59,6 +56,8 @@ export class MyComponent extends LitElement {
 
       
       <h1>${this.title}</h1>
+
+      <p>Edad: ${this.age}</p>
 
       <p>esto es un ${this.other}</p>
 
