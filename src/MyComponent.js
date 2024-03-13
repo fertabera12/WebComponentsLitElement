@@ -58,13 +58,13 @@ export class MyComponent extends LitElement {
     console.log("isTrue",this.isTrue)
   }
 
-
+  //manejadores de eventos directamente en tu plantilla HTML utilizando la sintaxis @eventname=${handler}.
 
   render() { 
     return html`
-
-      
-      <h1>${this.title}</h1>
+     
+      <h1 @click=${this.handleClick}>${this.title}</h1> 
+     
 
       <p>Edad: ${this.age}</p>
 
@@ -90,8 +90,27 @@ export class MyComponent extends LitElement {
       }
       <slot name = "my-slot"></slot> <!-- Se imprimen aqui los slot con nombre -->
       <slot></slot> <!-- Se imprimen aqui arriba los slot sin nombre -->
+  
       ${renderMessage()}
+      
+      <p>Registra un evento de cambio cuando escribes y despues cliequeas fuera</p>
+      <input type="text" @change=${(value)=> console.log('Cambiado',value)}/> 
+      <p>Registra cada caracter un evento de cambio cuando escribes</p>
+      <input type="text" @input=${(value)=> console.log('Cambiado',EventTarget)}/> 
     `;
+    }
+
+    handleClick(){
+
+      const event = new CustomEvent ('my-event', {
+        detail: {
+          message: 'Mensaje para Custom Event'
+        },
+        bubble:true,
+        compored: true
+      });
+
+      this.dispatchEvent(event);
     }
 }
 

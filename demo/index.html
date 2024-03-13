@@ -24,9 +24,12 @@
 
     const titulo = 'Texto ejemplo';
     const listaFruta = ['manzana', 'pera','uva'];
+
     render(
       html`
-        <my-component age = "20";
+        <my-component 
+        @my-event=${({detail})=>console.log(detail)} 
+          age = "20";
           .title = "${titulo}" 
           .isTrue = "${false}" 
           .list = "${listaFruta}"
