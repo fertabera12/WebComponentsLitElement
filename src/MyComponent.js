@@ -28,6 +28,22 @@ export class MyComponent extends LitElement {
     `]
   }
 
+  static get properties(){
+    return{
+      title:{type:String, Reflect:true, attribute: 'my-title'},
+      age: {type: Number},
+      pagination: {reflect: true, converter: {
+        toAttribute(value){
+          return value ? 'yes' : 'no';
+        },
+        fromAttribute(value){
+          return value == 'yes';
+        }
+      }}
+    }
+  }
+
+
   constructor() {
     super();
     this.title = 'Hola Fersi';
@@ -35,6 +51,7 @@ export class MyComponent extends LitElement {
     this.list = ['lit', 'OpenWC','LitHtml'];
     this.isTrue = true;
     this.age = 18;
+    this.pagination = true;
   }
 
   firstUpdated(){
@@ -48,6 +65,10 @@ export class MyComponent extends LitElement {
 
       
       <h1>${this.title}</h1>
+
+      <p>Edad: ${this.age}</p>
+
+      <p>Pagination: ${this.pagination}</p>
 
       <p>esto es un ${this.other}</p>
 
