@@ -54,19 +54,32 @@ export class MyComponent extends LitElement {
     this.pagination = true;
   }
 
+  connectedCallback(){
+    super.connectedCallback();
+    console.log ('connectedCallback Ejecutado');
+    this.addEventListener('another-event', ( ) => console.log('evento lanzado!!!'))
+  }
+
+  disconnectedCallback(){
+    this.removeEventListener('another-event');
+    super.disconnectedCallback();
+  }
+
   firstUpdated(){
-    console.log("isTrue",this.isTrue)
+    console.log("First update!!!");
+    this.age = 50;
+  }
+  updated(){
+    console.log('Updated!!!');
   }
 
   //manejadores de eventos directamente en tu plantilla HTML utilizando la sintaxis @eventname=${handler}.
 
   render() { 
     return html`
-     
       <h1 @click=${this.handleClick}>${this.title}</h1> 
-     
 
-      <p>Edad: ${this.age}</p>
+      <p @click =${this.handleEvent}>Edad: ${this.age}</p>
 
       <p>Pagination: ${this.pagination}</p>
 
@@ -75,7 +88,6 @@ export class MyComponent extends LitElement {
       <ul>
         ${this.list.map((item) => html`<li>${item}</li>`)}
       </ul>
-
 
       <slot name = "my-titulo"></slot> 
       <slot name = "my-enlace"></slot> 
@@ -90,12 +102,15 @@ export class MyComponent extends LitElement {
       }
       <slot name = "my-slot"></slot> <!-- Se imprimen aqui los slot con nombre -->
       <slot></slot> <!-- Se imprimen aqui arriba los slot sin nombre -->
-  
+
       ${renderMessage()}
       
       <p>Registra un evento de cambio cuando escribes y despues cliequeas fuera</p>
+
       <input type="text" @change=${(value)=> console.log('Cambiado',value)}/> 
+
       <p>Registra cada caracter un evento de cambio cuando escribes</p>
+
       <input type="text" @input=${(value)=> console.log('Cambiado',EventTarget)}/> 
     `;
     }
@@ -110,6 +125,11 @@ export class MyComponent extends LitElement {
         compored: true
       });
 
+      this.dispatchEvent(event);
+    }
+
+    handleEvent(){
+      const event = new CustomEvent ('another-event');
       this.dispatchEvent(event);
     }
 }
