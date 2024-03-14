@@ -1,5 +1,6 @@
 import { html, css, LitElement } from 'lit';
 import { styles } from './styles';
+import './MyMessage.js';
 
 
 function renderMessage(message = "Valor default") {
@@ -112,6 +113,8 @@ export class MyComponent extends LitElement {
       <p>Registra cada caracter un evento de cambio cuando escribes</p>
 
       <input type="text" @input=${(value)=> console.log('Cambiado',EventTarget)}/> 
+
+      <my-message></my-message>
     `;
     }
 
