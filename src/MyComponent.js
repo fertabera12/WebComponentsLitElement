@@ -54,6 +54,17 @@ export class MyComponent extends LitElement {
     this.pagination = true;
   }
 
+  connectedCallback(){
+    super.connectedCallback();
+    console.log ('connectedCallback Ejecutado');
+    this.addEventListener('another-event', ( ) => console.log('evento lanzado!!!'))
+  }
+
+  disconnectedCallback(){
+    this.removeEventListener('another-event');
+    super.disconnectedCallback();
+  }
+
   firstUpdated(){
     console.log("isTrue",this.isTrue)
   }
@@ -66,7 +77,7 @@ export class MyComponent extends LitElement {
       <h1 @click=${this.handleClick}>${this.title}</h1> 
      
 
-      <p>Edad: ${this.age}</p>
+      <p @click =${this.handleEvent}>Edad: ${this.age}</p>
 
       <p>Pagination: ${this.pagination}</p>
 
@@ -110,6 +121,11 @@ export class MyComponent extends LitElement {
         compored: true
       });
 
+      this.dispatchEvent(event);
+    }
+
+    handleEvent(){
+      const event = new CustomEvent ('another-event');
       this.dispatchEvent(event);
     }
 }
